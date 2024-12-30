@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Textsummary from './Textsummary';
 
 export default function Textform() {
     const[text,setText]=useState("Hello...!");
@@ -12,6 +13,14 @@ export default function Textform() {
     }
     const clearText=()=>{
         setText("");
+    }
+    const clearSpace=()=>{
+        let noSpaces = text.replace(/\s+/g, '');
+        setText(noSpaces);
+    }
+    const clearChar=()=>{
+        let newText = text.replace(/[^a-zA-Z0-9\s]/g, "");  // Remove special characters
+        setText(newText);
     }
     const onChangeUpdate = (event) => {
         setText(event.target.value); // Update state when user types
@@ -29,12 +38,19 @@ export default function Textform() {
   <button type="button" className="btn btn-dark" onClick={lowerCase}>
     Convert to LowerCase
   </button>
+  <button type="button" className="btn btn-dark" onClick={clearSpace}>
+    Remove Spaces
+  </button>
+  <button type="button" className="btn btn-dark" onClick={clearChar}>
+    Remove special Characters
+  </button>
   <button type="button" className="btn btn-dark" onClick={clearText}>
     Clear
   </button>
 </div>
     </div>
     </div>
+    <Textsummary text={text} />
 </>
   )
 }
