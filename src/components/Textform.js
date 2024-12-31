@@ -4,23 +4,53 @@ import Textsummary from './Textsummary';
 export default function Textform(props) {
     const[text,setText]=useState("Hello...!");
     const upperCase=()=>{
-        let newText=text.toUpperCase();
+        if(text.length>0){
+          let newText=text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to Uppercase","Success");
+        }
+        else{
+          props.showAlert("Enter the Text","Alert");
+        }
+        
     }
     const lowerCase=()=>{
+      if(text.length>0){
         let newText=text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to Lowercase","Success");
+      }
+      else{
+        props.showAlert("Enter the Text","Alert");
+      }
+
     }
     const clearText=()=>{
+      if(text.length>0){
         setText("");
+        props.showAlert("Text Cleared","Success");
+      }
+        else{
+          props.showAlert("Enter the Text","Alert");
+        }
     }
     const clearSpace=()=>{
+      if(text.length>0){
         let noSpaces = text.replace(/\s+/g, '');
         setText(noSpaces);
+        props.showAlert("Spaces Removed","Success");}
+        else{
+          props.showAlert("Enter the Text","Alert");
+        }
     }
     const clearChar=()=>{
+      if(text.length>0){
         let newText = text.replace(/[^a-zA-Z0-9\s]/g, "");  // Remove special characters
         setText(newText);
+        props.showAlert("Special characters removed","Success");}
+        else{
+          props.showAlert("Enter the Text","Alert");
+        }
     }
     const onChangeUpdate = (event) => {
         setText(event.target.value); // Update state when user types
