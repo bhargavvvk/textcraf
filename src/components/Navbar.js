@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Navbar() {
+
+export default function Navbar(props) {
+
+  const [isChecked, setIsChecked] = useState(false);
+
+const handleSwitchChange = (event) => {
+  const checked = event.target.checked;
+  setIsChecked(checked);
+  props.toggleMode(); // Toggles the theme
+};
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
   <div className="container-fluid">
     <a className="navbar-brand" href="/">TextCraft</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,11 +27,25 @@ export default function Navbar() {
           <a className="nav-link" href="/">About</a>
         </li>
       </ul>
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <li className="nav-item align-items-center d-flex" >
+      <i className={`fas fa-sun text-${props.mode === 'light' ? 'dark' : 'white'}`}></i>
+<div className="ms-2 form-check form-switch">
+  <input
+    className={`form-check-input border-${props.mode === 'light' ? 'dark' : 'light'}`}
+    style={{
+      backgroundColor: isChecked ? 'grey' : 'grey', // Always set to grey
+    }}
+    onChange={handleSwitchChange}
+    type="checkbox"
+    role="switch"
+    id="themingSwitcher"
+  />
+</div>
+<i className={`fas fa-moon text-${props.mode === 'light' ? 'dark' : 'white'}`}></i>
+
+      </li>
     </div>
+
   </div>
 </nav>
   )
