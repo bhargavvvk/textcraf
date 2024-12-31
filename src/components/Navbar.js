@@ -27,7 +27,7 @@ const handleSwitchChange = (event) => {
           <a className="nav-link" href="/">About</a>
         </li>
       </ul>
-      <li class="nav-item align-items-center d-flex" >
+      <li className="nav-item align-items-center d-flex" >
       <i className={`fas fa-sun text-${props.mode === 'light' ? 'dark' : 'white'}`}></i>
 <div className="ms-2 form-check form-switch">
   <input

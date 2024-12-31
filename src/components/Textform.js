@@ -28,29 +28,29 @@ export default function Textform(props) {
   return (
     <>
     <div className="container mt-3">
-        <h3> Enter your text below</h3>
+        <h3 style={{ color: props.mode === 'light' ? 'black' : 'white' }}> Enter your text below</h3>
     <div className="mb-3 mt-2">
-    <textarea className="form-control border-dark" id="exampleFormControlTextarea1" value={text} onChange={onChangeUpdate} rows="9"></textarea>
+    <textarea className={`form-control border-${props.mode==='light'?'dark':'white'}`} style={{color:props.mode === 'light' ? 'black' : 'white',backgroundColor:props.mode==="light"?"white":"rgba(33, 37, 41, 0.5)"}} id="exampleFormControlTextarea1" value={text} onChange={onChangeUpdate} rows="9"></textarea>
     <div className="d-flex gap-3 mt-3">
-  <button type="button" className="btn btn-dark" onClick={upperCase}>
+  <button type="button" className={`btn btn-${props.mode==='light'?"dark":"light"}`} onClick={upperCase}>
     Convert to UpperCase
   </button>
-  <button type="button" className="btn btn-dark" onClick={lowerCase}>
+  <button type="button" className={`btn btn-${props.mode==='light'?"dark":"light"}`} onClick={lowerCase}>
     Convert to LowerCase
   </button>
-  <button type="button" className="btn btn-dark" onClick={clearSpace}>
+  <button type="button" className={`btn btn-${props.mode==='light'?"dark":"light"}`} onClick={clearSpace}>
     Remove Spaces
   </button>
-  <button type="button" className="btn btn-dark" onClick={clearChar}>
+  <button type="button" className={`btn btn-${props.mode==='light'?"dark":"light"}`} onClick={clearChar}>
     Remove special Characters
   </button>
-  <button type="button" className="btn btn-dark" onClick={clearText}>
+  <button type="button" className={`btn btn-${props.mode==='light'?"dark":"light"}`} onClick={clearText}>
     Clear
   </button>
 </div>
     </div>
     </div>
-    <Textsummary text={text} />
+    <Textsummary text={text} mode={props.mode}/>
 </>
   )
 }
