@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import Textsummary from './Textsummary';
 
-export default function Textform() {
+export default function Textform(props) {
     const[text,setText]=useState("Hello...!");
     const upperCase=()=>{
         let newText=text.toUpperCase();
